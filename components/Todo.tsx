@@ -1,6 +1,9 @@
 import { deleteTodo, toggleTodoComplete, updateTodo } from '@/utils/todoCrud';
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import CheckMark from './svg/CheckMark';
+import Edit from './svg/Edit';
+import Delete from './svg/Delete';
 
 interface TodoProps {
   id: string;
@@ -77,6 +80,23 @@ export default function Todo({ id, title, completed = false }: TodoProps) {
 
   return (
     <View className="flex-row items-center p-4 bg-gray-800 rounded-lg shadow-sm mb-2 mx-4 border border-gray-700">
+      <TouchableOpacity
+        onPress={handleComplete}
+        disabled={isLoading}
+        className="mr-3"
+      >
+        <View className={`w-6 h-6 rounded border-2 ${
+          completed 
+            ? 'bg-green-500 border-green-500' 
+            : 'border-gray-400 bg-transparent'
+        } ${isLoading ? 'opacity-50' : ''} flex items-center justify-center`}>
+          {completed && (
+            <CheckMark width={12} height={12} />
+          )}
+        </View>
+      </TouchableOpacity>
+
+      {/* Todo Content */}
       <View className="flex-1">
         {isEditing ? (
           <TextInput
@@ -95,6 +115,7 @@ export default function Todo({ id, title, completed = false }: TodoProps) {
         )}
       </View>
 
+      {/* Action Buttons */}
       <View className="flex-row ml-3 space-x-2 gap-2">
         {isEditing ? (
           <>
@@ -115,32 +136,22 @@ export default function Todo({ id, title, completed = false }: TodoProps) {
           </>
         ) : (
           <>
-            <TouchableOpacity
-              onPress={handleComplete}
-              disabled={isLoading}
-              className={`px-3 py-2 rounded ${
-                completed ? 'bg-orange-500' : 'bg-green-500'
-              } ${isLoading ? 'opacity-50' : ''}`}
-            >
-              <Text className="text-white font-medium text-sm">
-                {completed ? 'Undo' : 'Complete'}
-              </Text>
-            </TouchableOpacity>
-
+            {/* Edit Button */}
             <TouchableOpacity
               onPress={handleEdit}
               disabled={isLoading}
               className={`bg-blue-500 px-3 py-2 rounded ${isLoading ? 'opacity-50' : ''}`}
             >
-              <Text className="text-white font-medium text-sm">Edit</Text>
+              <Edit width={16} height={16} />
             </TouchableOpacity>
 
+            {/* Delete Button */}
             <TouchableOpacity
               onPress={handleDelete}
               disabled={isLoading}
               className={`bg-red-500 px-3 py-2 rounded ${isLoading ? 'opacity-50' : ''}`}
             >
-              <Text className="text-white font-medium text-sm">Delete</Text>
+              <Delete width={16} height={16} />
             </TouchableOpacity>
           </>
         )}

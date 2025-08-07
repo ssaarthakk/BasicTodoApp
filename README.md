@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# Basic Todo App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A basic todo application built with React Native, Expo, and Firebase.
 
-## Get started
+## Prerequisites
 
-1. Install dependencies
+- Node.js (v16 or later)
+- pnpm (recommended) or npm
+- Expo CLI
+- Firebase project
 
+## Installation
+
+1. **Clone the repository**
    ```bash
-   npm install
+   git clone <repository-url>
+   cd BasicTodoApp
    ```
 
-2. Start the app
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
+3. **Setup Firebase**
+   - Create a new Firebase project at [Firebase Console](https://console.firebase.google.com)
+   - Enable Firestore Database
+   - Copy your Firebase configuration
+
+4. **Environment Configuration**
+   - Copy `.env.example` to `.env`
+   - Update the `.env` file with your Firebase configuration:
+   ```env
+   EXPO_PUBLIC_FIREBASE_API_KEY=your_api_key
+   EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   EXPO_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   EXPO_PUBLIC_FIREBASE_APP_ID=your_app_id
+   ```
+
+## Running the App
+
+1. **Start the development server**
+   ```bash
+   pnpm start
+   ```
+   or
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+2. **Run on device/simulator**
+   - Scan the QR code with Expo Go app (iOS/Android)
+   - Press `i` for iOS Simulator
+   - Press `a` for Android Emulator
+   - Press `w` for web browser
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Author
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Sarthak** - [@ssaarthakk](https://github.com/ssaarthakk)
