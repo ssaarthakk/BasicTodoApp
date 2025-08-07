@@ -103,3 +103,18 @@ export const deleteTodo = async (id: string) => {
         throw new Error("Failed to delete todo.");
     }
 };
+
+export const updateTodo = async (id: string, title: string) => {
+    try {
+        const todoDocRef = doc(db, 'todos', id);
+
+        await updateDoc(todoDocRef, {
+            title: title
+        });
+
+        console.log(`Todo with ID ${id} updated successfully.`);
+    } catch (error) {
+        console.error("Error updating todo: ", error);
+        throw new Error("Failed to update todo.");
+    }
+}

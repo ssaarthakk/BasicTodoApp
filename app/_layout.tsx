@@ -1,13 +1,8 @@
-import "./global.css"
+import "./global.css";
 
-import { Stack } from 'expo-router';
 import 'react-native-reanimated';
+import HomeScreen from './index';
 
 export default function RootLayout() {
-
-  return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
-  );
+  return <HomeScreen />;
 }
