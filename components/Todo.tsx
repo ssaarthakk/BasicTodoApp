@@ -6,10 +6,9 @@ interface TodoProps {
   id: string;
   title: string;
   completed?: boolean;
-  onUpdate?: () => void;
 }
 
-export default function Todo({ id, title, completed = false, onUpdate }: TodoProps) {
+export default function Todo({ id, title, completed = false }: TodoProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +17,6 @@ export default function Todo({ id, title, completed = false, onUpdate }: TodoPro
     try {
       setIsLoading(true);
       await toggleTodoComplete(id, completed);
-      onUpdate?.();
     } catch (error) {
       Alert.alert('Error', 'Failed to update todo status');
     } finally {
@@ -39,7 +37,6 @@ export default function Todo({ id, title, completed = false, onUpdate }: TodoPro
             try {
               setIsLoading(true);
               await deleteTodo(id);
-              onUpdate?.();
             } catch (error) {
               Alert.alert('Error', 'Failed to delete todo');
             } finally {
@@ -66,7 +63,6 @@ export default function Todo({ id, title, completed = false, onUpdate }: TodoPro
       setIsLoading(true);
       await updateTodo(id, editedTitle.trim());
       setIsEditing(false);
-      onUpdate?.();
     } catch (error) {
       Alert.alert('Error', 'Failed to update todo');
     } finally {
@@ -80,25 +76,26 @@ export default function Todo({ id, title, completed = false, onUpdate }: TodoPro
   };
 
   return (
-    <View className="flex-row items-center p-4 bg-white rounded-lg shadow-sm mb-2 mx-4">
+    <View className="flex-row items-center p-4 bg-gray-800 rounded-lg shadow-sm mb-2 mx-4 border border-gray-700">
       <View className="flex-1">
         {isEditing ? (
           <TextInput
             value={editedTitle}
             onChangeText={setEditedTitle}
-            className="border border-gray-300 rounded px-3 py-2 text-gray-800"
+            className="border border-gray-600 bg-gray-700 text-white rounded px-3 py-2"
+            placeholderTextColor="#9CA3AF"
             autoFocus
           />
         ) : (
           <Text 
-            className={`text-lg ${completed ? 'line-through text-gray-500' : 'text-gray-800'}`}
+            className={`text-lg ${completed ? 'line-through text-gray-500' : 'text-white'}`}
           >
             {title}
           </Text>
         )}
       </View>
 
-      <View className="flex-row ml-3 space-x-2">
+      <View className="flex-row ml-3 space-x-2 gap-2">
         {isEditing ? (
           <>
             <TouchableOpacity
@@ -111,7 +108,7 @@ export default function Todo({ id, title, completed = false, onUpdate }: TodoPro
             <TouchableOpacity
               onPress={handleCancelEdit}
               disabled={isLoading}
-              className="bg-gray-500 px-3 py-2 rounded"
+              className="bg-gray-600 px-3 py-2 rounded"
             >
               <Text className="text-white font-medium">Cancel</Text>
             </TouchableOpacity>
