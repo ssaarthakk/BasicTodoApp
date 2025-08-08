@@ -1,14 +1,14 @@
 import { auth } from '@/config/firebaseConfig';
 import { storeUser } from '@/utils/asyncStorage';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
 
 interface LoginProps {
-    setLoginPage: React.Dispatch<React.SetStateAction<boolean>>;
+    onSwitchToSignUp?: () => void;
 }
 
-const Login = ({ setLoginPage }: LoginProps) => {
+const Login = ({ onSwitchToSignUp }: LoginProps) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -92,12 +92,17 @@ const Login = ({ setLoginPage }: LoginProps) => {
                 </View>
 
                 {/* Footer */}
-                <TouchableOpacity className="mt-8" onPress={() => setLoginPage(false)}>
+                <View className="mt-8">
                     <Text className="text-gray-600 text-center">
                         Don't have an account?{' '}
-                        <Text className="text-blue-500 font-semibold">Sign Up</Text>
+                        <Text 
+                            className="text-blue-500 font-semibold"
+                            onPress={onSwitchToSignUp}
+                        >
+                            Sign Up
+                        </Text>
                     </Text>
-                </TouchableOpacity>
+                </View>
             </View>
         </KeyboardAvoidingView>
     )

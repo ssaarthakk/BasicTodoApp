@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Login from './Login';
-import SignUp from './SignUp';
+import Login from './auth/Login';
+import SignUp from './auth/SignUp';
 
 const AuthScreen = () => {
     const [isLogin, setIsLogin] = useState(true);

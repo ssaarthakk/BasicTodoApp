@@ -1,14 +1,14 @@
 import { auth } from '@/config/firebaseConfig';
 import { storeUser } from '@/utils/asyncStorage';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
 
-interface LoginProps {
-    setLoginPage: React.Dispatch<React.SetStateAction<boolean>>;
+interface SignUpProps {
+    onSwitchToLogin?: () => void;
 }
 
-const SignUp = ({ setLoginPage }: LoginProps) => {
+const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -126,17 +126,20 @@ const SignUp = ({ setLoginPage }: LoginProps) => {
                 </View>
 
                 {/* Footer */}
-                <TouchableOpacity className="mt-8" onPress={() => setLoginPage(true)}>
+                <View className="mt-8">
                     <Text className="text-gray-600 text-center">
                         Already have an account?{' '}
-                        <Text className="text-green-500 font-semibold">Sign In</Text>
+                        <Text 
+                            className="text-green-500 font-semibold"
+                            onPress={onSwitchToLogin}
+                        >
+                            Sign In
+                        </Text>
                     </Text>
-                </TouchableOpacity>
+                </View>
             </View>
         </KeyboardAvoidingView>
     )
 };
 
 export default SignUp;
-
-const styles = StyleSheet.create({});

@@ -14,7 +14,7 @@ export default function RootLayout() {
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    // Check for stored user first
+
     const checkStoredUser = async () => {
       try {
         const storedUser = await getUser();
@@ -28,10 +28,8 @@ export default function RootLayout() {
 
     checkStoredUser();
 
-    // Listen for auth state changes
     const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
-        // User is signed in
         try {
           await storeUser(authUser);
           setUser(authUser);
@@ -39,7 +37,6 @@ export default function RootLayout() {
           console.error("Error storing user:", error);
         }
       } else {
-        // User is signed out
         try {
           await storeUser(null);
           setUser(null);
@@ -54,7 +51,6 @@ export default function RootLayout() {
     return unsubscribe;
   }, [initializing]);
 
-  // Show loading screen while checking authentication
   if (initializing) {
     return (
       <View className="flex-1 justify-center items-center bg-gray-50">
@@ -64,6 +60,5 @@ export default function RootLayout() {
     );
   }
 
-  // Show appropriate screen based on authentication state
   return user ? <HomeScreen /> : <AuthScreen />;
 }
