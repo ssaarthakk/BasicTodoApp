@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Login from './auth/Login';
-import SignUp from './auth/SignUp';
+import Login from './Login';
+import SignUp from './SignUp';
 
 const AuthScreen = () => {
     const [isLogin, setIsLogin] = useState(true);
 
     return (
-        <View className="flex-1">
+        <View className="flex-1 bg-gray-900">
             {isLogin ? (
                 <Login onSwitchToSignUp={() => setIsLogin(false)} />
             ) : (
