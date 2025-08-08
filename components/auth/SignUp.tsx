@@ -2,7 +2,7 @@ import { auth } from '@/config/firebaseConfig';
 import { storeUser } from '@/utils/asyncStorage';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
 
 interface SignUpProps {
     onSwitchToLogin?: () => void;
@@ -53,15 +53,15 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
     return (
         <KeyboardAvoidingView 
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            className="flex-1 bg-gray-50"
+            className="flex-1 bg-gray-900"
         >
             <View className="flex-1 justify-center px-6">
                 {/* Header */}
                 <View className="mb-8">
-                    <Text className="text-3xl font-bold text-gray-800 text-center mb-2">
+                    <Text className="text-3xl font-bold text-white text-center mb-2">
                         Create Account
                     </Text>
-                    <Text className="text-gray-600 text-center">
+                    <Text className="text-gray-400 text-center">
                         Sign up to get started with your Todo app
                     </Text>
                 </View>
@@ -70,11 +70,11 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
                 <View className="space-y-4">
                     {/* Email Input */}
                     <View>
-                        <Text className="text-gray-700 mb-2 font-medium">Email</Text>
+                        <Text className="text-gray-300 mb-2 font-medium">Email</Text>
                         <TextInput
-                            className="bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-800"
+                            className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white"
                             placeholder="Enter your email"
-                            placeholderTextColor="#9CA3AF"
+                            placeholderTextColor="#6B7280"
                             value={email}
                             onChangeText={setEmail}
                             keyboardType="email-address"
@@ -85,11 +85,11 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
 
                     {/* Password Input */}
                     <View>
-                        <Text className="text-gray-700 mb-2 font-medium">Password</Text>
+                        <Text className="text-gray-300 mb-2 font-medium">Password</Text>
                         <TextInput
-                            className="bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-800"
+                            className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white"
                             placeholder="Enter your password"
-                            placeholderTextColor="#9CA3AF"
+                            placeholderTextColor="#6B7280"
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry
@@ -100,11 +100,11 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
 
                     {/* Confirm Password Input */}
                     <View>
-                        <Text className="text-gray-700 mb-2 font-medium">Confirm Password</Text>
+                        <Text className="text-gray-300 mb-2 font-medium">Confirm Password</Text>
                         <TextInput
-                            className="bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-800"
+                            className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white"
                             placeholder="Confirm your password"
-                            placeholderTextColor="#9CA3AF"
+                            placeholderTextColor="#6B7280"
                             value={confirmPassword}
                             onChangeText={setConfirmPassword}
                             secureTextEntry
@@ -115,7 +115,7 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
 
                     {/* Sign Up Button */}
                     <TouchableOpacity
-                        className={`bg-green-500 rounded-lg py-3 mt-6 ${isLoading ? 'opacity-50' : ''}`}
+                        className={`bg-green-600 rounded-lg py-3 mt-6 ${isLoading ? 'opacity-50' : ''}`}
                         onPress={handleSignUp}
                         disabled={isLoading}
                     >
@@ -127,10 +127,10 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
 
                 {/* Footer */}
                 <View className="mt-8">
-                    <Text className="text-gray-600 text-center">
+                    <Text className="text-gray-400 text-center">
                         Already have an account?{' '}
                         <Text 
-                            className="text-green-500 font-semibold"
+                            className="text-green-400 font-semibold"
                             onPress={onSwitchToLogin}
                         >
                             Sign In

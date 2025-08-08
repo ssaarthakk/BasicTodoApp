@@ -34,15 +34,15 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
     return (
         <KeyboardAvoidingView 
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            className="flex-1 bg-gray-50"
+            className="flex-1 bg-gray-900"
         >
             <View className="flex-1 justify-center px-6">
                 {/* Header */}
                 <View className="mb-8">
-                    <Text className="text-3xl font-bold text-gray-800 text-center mb-2">
+                    <Text className="text-3xl font-bold text-white text-center mb-2">
                         Welcome Back
                     </Text>
-                    <Text className="text-gray-600 text-center">
+                    <Text className="text-gray-400 text-center">
                         Sign in to continue to your Todo app
                     </Text>
                 </View>
@@ -51,11 +51,11 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
                 <View className="space-y-4">
                     {/* Email Input */}
                     <View>
-                        <Text className="text-gray-700 mb-2 font-medium">Email</Text>
+                        <Text className="text-gray-300 mb-2 font-medium">Email</Text>
                         <TextInput
-                            className="bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-800"
+                            className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white"
                             placeholder="Enter your email"
-                            placeholderTextColor="#9CA3AF"
+                            placeholderTextColor="#6B7280"
                             value={email}
                             onChangeText={setEmail}
                             keyboardType="email-address"
@@ -66,11 +66,11 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
 
                     {/* Password Input */}
                     <View>
-                        <Text className="text-gray-700 mb-2 font-medium">Password</Text>
+                        <Text className="text-gray-300 mb-2 font-medium">Password</Text>
                         <TextInput
-                            className="bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-800"
+                            className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white"
                             placeholder="Enter your password"
-                            placeholderTextColor="#9CA3AF"
+                            placeholderTextColor="#6B7280"
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry
@@ -81,7 +81,7 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
 
                     {/* Login Button */}
                     <TouchableOpacity
-                        className={`bg-blue-500 rounded-lg py-3 mt-6 ${isLoading ? 'opacity-50' : ''}`}
+                        className={`bg-blue-600 rounded-lg py-3 mt-6 ${isLoading ? 'opacity-50' : ''}`}
                         onPress={handleLogin}
                         disabled={isLoading}
                     >
@@ -93,10 +93,10 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
 
                 {/* Footer */}
                 <View className="mt-8">
-                    <Text className="text-gray-600 text-center">
+                    <Text className="text-gray-400 text-center">
                         Don't have an account?{' '}
                         <Text 
-                            className="text-blue-500 font-semibold"
+                            className="text-blue-400 font-semibold"
                             onPress={onSwitchToSignUp}
                         >
                             Sign Up
