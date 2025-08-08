@@ -45,7 +45,7 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
                 </View>
 
                 <View className="space-y-4">
-                    <View>
+                    <View className='pb-4'>
                         <Text className="text-gray-300 mb-2 font-medium">Email</Text>
                         <TextInput
                             className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white"

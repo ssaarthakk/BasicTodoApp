@@ -63,7 +63,7 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
                     </Text>
                 </View>
 
-                <View className="space-y-4">
+                <View className="space-y-4 gap-y-4">
                     <View>
                         <Text className="text-gray-300 mb-2 font-medium">Email</Text>
                         <TextInput
