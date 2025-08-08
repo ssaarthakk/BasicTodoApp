@@ -1,6 +1,5 @@
 import Todo from '@/components/Todo';
 import { auth, db } from '@/config/firebaseConfig';
-import { storeUser } from '@/utils/asyncStorage';
 import { addTodo, Todo as TodoType } from '@/utils/todoCrud';
 import { signOut } from 'firebase/auth';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
@@ -62,7 +61,6 @@ export default function HomeScreen() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      await storeUser(null);
       ToastAndroid.show('Logged out successfully', ToastAndroid.SHORT);
     } catch (error) {
       ToastAndroid.show('Error logging out', ToastAndroid.SHORT);

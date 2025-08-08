@@ -1,5 +1,4 @@
 import { auth } from '@/config/firebaseConfig';
-import { storeUser } from '@/utils/asyncStorage';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
@@ -21,8 +20,7 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
 
         setIsLoading(true);
         try {
-            const user = await signInWithEmailAndPassword(auth, email, password);
-            await storeUser(user);
+            await signInWithEmailAndPassword(auth, email, password);
             ToastAndroid.show('Login successful!', ToastAndroid.SHORT);
         } catch (error) {
             ToastAndroid.show('Login failed. Please try again.', ToastAndroid.SHORT);
@@ -37,7 +35,6 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
             className="flex-1 bg-gray-900"
         >
             <View className="flex-1 justify-center px-6">
-                {/* Header */}
                 <View className="mb-8">
                     <Text className="text-3xl font-bold text-white text-center mb-2">
                         Welcome Back
@@ -47,9 +44,7 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
                     </Text>
                 </View>
 
-                {/* Form */}
                 <View className="space-y-4">
-                    {/* Email Input */}
                     <View>
                         <Text className="text-gray-300 mb-2 font-medium">Email</Text>
                         <TextInput
@@ -64,7 +59,6 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
                         />
                     </View>
 
-                    {/* Password Input */}
                     <View>
                         <Text className="text-gray-300 mb-2 font-medium">Password</Text>
                         <TextInput
@@ -79,7 +73,6 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
                         />
                     </View>
 
-                    {/* Login Button */}
                     <TouchableOpacity
                         className={`bg-blue-600 rounded-lg py-3 mt-6 ${isLoading ? 'opacity-50' : ''}`}
                         onPress={handleLogin}
@@ -91,7 +84,6 @@ const Login = ({ onSwitchToSignUp }: LoginProps) => {
                     </TouchableOpacity>
                 </View>
 
-                {/* Footer */}
                 <View className="mt-8">
                     <Text className="text-gray-400 text-center">
                         Don't have an account?{' '}

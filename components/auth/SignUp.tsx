@@ -1,5 +1,4 @@
 import { auth } from '@/config/firebaseConfig';
-import { storeUser } from '@/utils/asyncStorage';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
@@ -32,8 +31,7 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
 
         setIsLoading(true);
         try {
-            const user = await createUserWithEmailAndPassword(auth, email, password);
-            await storeUser(user);
+            await createUserWithEmailAndPassword(auth, email, password);
             ToastAndroid.show('Sign Up successful!', ToastAndroid.SHORT);
         } catch (error: any) {
             let errorMessage = 'Sign Up failed. Please try again.';
@@ -56,7 +54,6 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
             className="flex-1 bg-gray-900"
         >
             <View className="flex-1 justify-center px-6">
-                {/* Header */}
                 <View className="mb-8">
                     <Text className="text-3xl font-bold text-white text-center mb-2">
                         Create Account
@@ -66,9 +63,7 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
                     </Text>
                 </View>
 
-                {/* Form */}
                 <View className="space-y-4">
-                    {/* Email Input */}
                     <View>
                         <Text className="text-gray-300 mb-2 font-medium">Email</Text>
                         <TextInput
@@ -83,7 +78,6 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
                         />
                     </View>
 
-                    {/* Password Input */}
                     <View>
                         <Text className="text-gray-300 mb-2 font-medium">Password</Text>
                         <TextInput
@@ -98,7 +92,6 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
                         />
                     </View>
 
-                    {/* Confirm Password Input */}
                     <View>
                         <Text className="text-gray-300 mb-2 font-medium">Confirm Password</Text>
                         <TextInput
@@ -113,7 +106,6 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
                         />
                     </View>
 
-                    {/* Sign Up Button */}
                     <TouchableOpacity
                         className={`bg-green-600 rounded-lg py-3 mt-6 ${isLoading ? 'opacity-50' : ''}`}
                         onPress={handleSignUp}
@@ -125,7 +117,6 @@ const SignUp = ({ onSwitchToLogin }: SignUpProps) => {
                     </TouchableOpacity>
                 </View>
 
-                {/* Footer */}
                 <View className="mt-8">
                     <Text className="text-gray-400 text-center">
                         Already have an account?{' '}

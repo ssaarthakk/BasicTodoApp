@@ -2,7 +2,6 @@ import "./global.css";
 
 import AuthScreen from '@/components/AuthScreen';
 import { auth } from "@/config/firebaseConfig";
-import { getUser, storeUser } from "@/utils/asyncStorage";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
@@ -14,37 +13,8 @@ export default function RootLayout() {
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-
-    const checkStoredUser = async () => {
-      try {
-        const storedUser = await getUser();
-        if (storedUser) {
-          setUser(storedUser);
-        }
-      } catch (error) {
-        console.error("Error reading stored user:", error);
-      }
-    };
-
-    checkStoredUser();
-
-    const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
-      if (authUser) {
-        try {
-          await storeUser(authUser);
-          setUser(authUser);
-        } catch (error) {
-          console.error("Error storing user:", error);
-        }
-      } else {
-        try {
-          await storeUser(null);
-          setUser(null);
-        } catch (error) {
-          console.error("Error clearing stored user:", error);
-        }
-      }
-      
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      setUser(authUser);
       if (initializing) setInitializing(false);
     });
 
@@ -53,9 +23,9 @@ export default function RootLayout() {
 
   if (initializing) {
     return (
-      <View className="flex-1 justify-center items-center bg-gray-50">
+      <View className="flex-1 justify-center items-center bg-gray-900">
         <ActivityIndicator size="large" color="#3B82F6" />
-        <Text className="text-gray-600 mt-4 text-lg">Loading...</Text>
+        <Text className="text-gray-400 mt-4 text-lg">Loading...</Text>
       </View>
     );
   }
