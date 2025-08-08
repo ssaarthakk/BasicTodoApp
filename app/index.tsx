@@ -1,9 +1,11 @@
 import Todo from '@/components/Todo';
-import { db } from '@/config/firebaseConfig';
+import { auth, db } from '@/config/firebaseConfig';
+import { storeUser } from '@/utils/asyncStorage';
 import { addTodo, Todo as TodoType } from '@/utils/todoCrud';
+import { signOut } from 'firebase/auth';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, FlatList, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
@@ -57,12 +59,30 @@ export default function HomeScreen() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      await storeUser(null);
+      ToastAndroid.show('Logged out successfully', ToastAndroid.SHORT);
+    } catch (error) {
+      ToastAndroid.show('Error logging out', ToastAndroid.SHORT);
+    }
+  };
+
   return (
     <View className="flex-1 bg-gray-900">
       <SafeAreaView className="bg-gray-800 p-6 px-4 border-b border-gray-700">
-        <Text className="text-white text-4xl font-bold text-center">
-          My Todo List
-        </Text>
+        <View className="flex-row justify-between items-center">
+          <Text className="text-white text-4xl font-bold flex-1 text-center">
+            My Todo List
+          </Text>
+          <TouchableOpacity
+            onPress={handleLogout}
+            className="bg-red-600 px-4 py-2 rounded-lg"
+          >
+            <Text className="text-white font-medium">Logout</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
 
       <View className="bg-gray-800 px-4 py-4 border-b border-gray-700">
